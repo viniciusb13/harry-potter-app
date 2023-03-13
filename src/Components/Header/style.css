@@ -1,0 +1,26 @@
+.header {
+    background-color: #e3a000;
+    font-family: Harry Potter, Arial;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px;
+}
+
+.nav-button {
+    padding: 0px 25px;
+    letter-spacing: 2.5px;
+    font-size: 1.7em;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-button:hover {
+    cursor: pointer;
+}
+
+a {
+    font-size: 2.5em;
+    margin: 25px 0px 10px;
+}
