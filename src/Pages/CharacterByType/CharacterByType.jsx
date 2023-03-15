@@ -1,30 +1,21 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
 
+import { getCharactersByType } from '../../api/axios.js'
 import Loading from '../../Components/Loading/Loading'
 import CharacterInfo from '../../Components/CharacterInfo/CharacterInfo'
 
 const StudentCharacters = () => {
     const { type } = useParams();
     const [characterType, setCharacterType] = useState([])
-
     const [loading, setLoading] = useState(false)
 
-    const getCharactersByType = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.get(`https://hp-api.onrender.com/api/characters/${type}`)
-            setCharacterType(response.data)
-            setLoading(false);
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
-    }
-
     useEffect(() => {
-        getCharactersByType()
+        setLoading(true)
+        getCharactersByType(type).then(res => {
+            setCharacterType(res)
+            setLoading(false)
+        })
     }, [])
 
     if(loading) {

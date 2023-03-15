@@ -1,28 +1,19 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
+import { getSpells } from '../../api/axios.js'
 import Loading from '../../Components/Loading/Loading'
-import backgroundCard from '../../assets/background-card.jpeg'
 import './style.css'
 
 const Spells = () => {
   const [spells, setSpells] = useState([])
   const [loading, setLoading] = useState(false)
 
-  const getSpells = async () => {
-      try {
-          setLoading(true);
-          const response = await axios.get('https://hp-api.onrender.com/api/spells/')
-          setSpells(response.data)
-          setLoading(false);
-      } catch (error) {
-          setLoading(false)
-          console.log(error)
-      }
-  }
-
   useEffect(() => {
-      getSpells()
+      setLoading(true)
+      getSpells().then(res => {
+          setSpells(res)
+          setLoading(false)
+      })
   }, [])
 
   if(loading) {
@@ -43,9 +34,6 @@ const Spells = () => {
           )
         })
       }
-      {/* <div className="spell-card">
-        Cartão de Feitiço
-      </div> */}
     </div>
   )
 }

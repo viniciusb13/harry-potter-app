@@ -13,13 +13,6 @@ import Loading from './Components/Loading/Loading'
 import './App.css'
 
 function App() {
-  const [loading, setLoading] = useState(false)
-  let x = false;
-
-  if(x) {
-    return <Loading />
-  }
-
   return (
     <div className="App">
       <Header />
