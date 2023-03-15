@@ -1,14 +1,14 @@
 import React from 'react'
 
-const SearchBar = ({ characters, setSearchResults }) => {
+const SearchBar = ({ totalResults, setSearchResults }) => {
     const handleSubmit = (e) => e.preventDefault;
 
     const handleSearchChange = (e) => {
         if(!e.target.value) {
-            setSearchResults(characters)
+            setSearchResults(totalResults)
         } else {
-            const results = characters.filter(character => {
-                return character.name.toLowerCase().includes(e.target.value.toLowerCase())
+            const results = totalResults.filter(totalResults => {
+                return totalResults.name.toLowerCase().includes(e.target.value.toLowerCase())
             })
             setSearchResults(results)
         }

@@ -28,8 +28,9 @@ const Characters = () => {
 
   return (
     <>
-        <SearchBar characters={characters} setSearchResults={setSearchResults} />
-        <div className="character-list">        {
+        <SearchBar totalResults={characters} setSearchResults={setSearchResults} />
+        <div className="character-list">
+            {
                 searchResults.map((character, index) => {
                     return (
                         <CharacterInfo
