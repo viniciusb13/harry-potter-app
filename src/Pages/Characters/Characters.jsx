@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
 
+import { getCharacters } from '../../api/axios.js'
 import Loading from '../../Components/Loading/Loading'
 import CharacterInfo from '../../Components/CharacterInfo/CharacterInfo'
 import './style.css'
@@ -8,21 +8,14 @@ import './style.css'
 const Characters = () => {
     const [characters, setCharacters] = useState([])
     const [loading, setLoading] = useState(false)
-
-    const getCharacters = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.get('https://hp-api.onrender.com/api/characters/')
-            setCharacters(response.data)
-            setLoading(false);
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
-    }
+    // const [q, setQ] = useState("")
 
     useEffect(() => {
-        getCharacters()
+        setLoading(true)
+        getCharacters().then(res => {
+            setCharacters(res)
+            setLoading(false)
+        })
     }, [])
 
     if(loading) {
@@ -31,28 +24,44 @@ const Characters = () => {
 
   return (
     <div className="character-list">
-        {
-            characters.map((character, index) => {
-                return (
-                    <CharacterInfo
-                        key={index}
-                        name={character.name}
-                        image={character.image}
-                        species={character.species}
-                        gender={character.gender}
-                        house={character.house}
-                        dateOfBirth={character.dateOfBirth}
-                        yearOfBirth={character.yearOfBirth}
-                        ancestry={character.ancestry}
-                        eyeColour={character.eyeColour}
-                        hairColour={character.hairColour}
-                        wand={character.wand}
-                        patronus={character.patronus}
-                    />
-                )
-            })
-        }
-    </div>
+        {/* <div className="search-wrapper">
+            <label htmlFor="search-form">
+                <input
+                    type="search"
+                    name="search-form"
+                    id="search-form"
+                    className="search-input"
+                    placeholder="Search for..."
+                    value={q}
+                    onChange={(e) => setQ(e.target.value)}
+                />
+                {console.log(q)}
+            </label>
+        </div> */}
+        {/* <div className="character-list"> */}
+            {
+                characters.map((character, index) => {
+                    return (
+                        <CharacterInfo
+                            key={index}
+                            name={character.name}
+                            image={character.image}
+                            species={character.species}
+                            gender={character.gender}
+                            house={character.house}
+                            dateOfBirth={character.dateOfBirth}
+                            yearOfBirth={character.yearOfBirth}
+                            ancestry={character.ancestry}
+                            eyeColour={character.eyeColour}
+                            hairColour={character.hairColour}
+                            wand={character.wand}
+                            patronus={character.patronus}
+                        />
+                    )
+                })
+            }
+        </div>
+    // </div>
   )
 }
 

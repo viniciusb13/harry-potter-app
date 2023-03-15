@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
+import { getHouse } from '../../api/axios.js'
 import Loading from '../../Components/Loading/Loading'
 import CharacterInfo from '../../Components/CharacterInfo/CharacterInfo'
-import axios from 'axios'
 
 const HouseCharacters = () => {
     const { house } = useParams();
@@ -11,20 +11,12 @@ const HouseCharacters = () => {
     const [houseCharacters, setHouseCharacters] = useState([])
     const [loading, setLoading] = useState(false)
 
-    const getCharactersFromHouse = async () => {
-        try {
-            setLoading(true);
-		    const response = await axios.get(`https://hp-api.onrender.com/api/characters/house/${house}`)
-		    setHouseCharacters(response.data)
-            setLoading(false);
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
-    }
-
     useEffect(() => {
-		getCharactersFromHouse()
+        setLoading(true)
+		getHouse(house).then(res => {
+            setHouseCharacters(res)
+            setLoading(false)
+        })
 	}, [])
 
     if(loading) {
