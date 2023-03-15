@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { getHouse } from '../../api/axios.js'
+import SearchBar from '../../Components/SearchBar/SearchBar'
 import Loading from '../../Components/Loading/Loading'
 import CharacterInfo from '../../Components/CharacterInfo/CharacterInfo'
 
@@ -10,13 +11,17 @@ const HouseCharacters = () => {
 
     const [houseCharacters, setHouseCharacters] = useState([])
     const [loading, setLoading] = useState(false)
+    const [searchResults, setSearchResults] = useState([])
 
     useEffect(() => {
         setLoading(true)
 		getHouse(house).then(res => {
             setHouseCharacters(res)
-            setLoading(false)
+            return res
+        }).then(res => {
+            setSearchResults(res)
         })
+        setLoading(false)
 	}, [])
 
     if(loading) {
@@ -25,9 +30,10 @@ const HouseCharacters = () => {
 
   return (
     <div>
+        <SearchBar totalResults={houseCharacters} setSearchResults={setSearchResults} />
         <div className="character-list">
         {
-            houseCharacters.map((character, index) => {
+            searchResults.map((character, index) => {
                 return (
                     <CharacterInfo
                         key={index}

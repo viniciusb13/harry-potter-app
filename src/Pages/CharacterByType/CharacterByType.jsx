@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { getCharactersByType } from '../../api/axios.js'
+import SearchBar from '../../Components/SearchBar/SearchBar'
 import Loading from '../../Components/Loading/Loading'
 import CharacterInfo from '../../Components/CharacterInfo/CharacterInfo'
 
@@ -9,13 +10,18 @@ const StudentCharacters = () => {
     const { type } = useParams();
     const [characterType, setCharacterType] = useState([])
     const [loading, setLoading] = useState(false)
+    const [searchResults, setSearchResults] = useState([])
+
 
     useEffect(() => {
         setLoading(true)
         getCharactersByType(type).then(res => {
             setCharacterType(res)
-            setLoading(false)
+            return res
+        }).then(res => {
+            setSearchResults(res)
         })
+        setLoading(false)
     }, [])
 
     if(loading) {
@@ -24,9 +30,10 @@ const StudentCharacters = () => {
 
   return (
     <div>
+        <SearchBar totalResults={characterType} setSearchResults={setSearchResults} />
         <div className="character-list">
             {
-                characterType.map((character, index) => {
+                searchResults.map((character, index) => {
                     return (
                         <CharacterInfo
                             key={index}
