@@ -3,19 +3,23 @@ import { useState, useEffect } from 'react'
 import { getCharacters } from '../../api/axios.js'
 import Loading from '../../Components/Loading/Loading'
 import CharacterInfo from '../../Components/CharacterInfo/CharacterInfo'
+import SearchBar from '../../Components/SearchBar/SearchBar'
 import './style.css'
 
 const Characters = () => {
     const [characters, setCharacters] = useState([])
     const [loading, setLoading] = useState(false)
-    // const [q, setQ] = useState("")
+    const [searchResults, setSearchResults] = useState([])
 
     useEffect(() => {
         setLoading(true)
         getCharacters().then(res => {
             setCharacters(res)
-            setLoading(false)
+            return res
+        }).then(res => {
+            setSearchResults(res)
         })
+        setLoading(false)
     }, [])
 
     if(loading) {
@@ -23,24 +27,10 @@ const Characters = () => {
     }
 
   return (
-    <div className="character-list">
-        {/* <div className="search-wrapper">
-            <label htmlFor="search-form">
-                <input
-                    type="search"
-                    name="search-form"
-                    id="search-form"
-                    className="search-input"
-                    placeholder="Search for..."
-                    value={q}
-                    onChange={(e) => setQ(e.target.value)}
-                />
-                {console.log(q)}
-            </label>
-        </div> */}
-        {/* <div className="character-list"> */}
-            {
-                characters.map((character, index) => {
+    <>
+        <SearchBar characters={characters} setSearchResults={setSearchResults} />
+        <div className="character-list">        {
+                searchResults.map((character, index) => {
                     return (
                         <CharacterInfo
                             key={index}
@@ -61,7 +51,7 @@ const Characters = () => {
                 })
             }
         </div>
-    // </div>
+    </>
   )
 }
 
