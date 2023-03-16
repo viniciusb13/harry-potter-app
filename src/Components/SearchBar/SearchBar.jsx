@@ -1,5 +1,6 @@
 import React from 'react'
 
+import './style.css'
 const SearchBar = ({ totalResults, setSearchResults }) => {
     const handleSubmit = (e) => e.preventDefault;
 
