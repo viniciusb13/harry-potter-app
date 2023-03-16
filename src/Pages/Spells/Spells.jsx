@@ -17,8 +17,8 @@ const Spells = () => {
         return res
       }).then(res => {
         setSearchResults(res)
+        setLoading(false)
       })
-      setLoading(false)
   }, [])
 
   if(loading) {
