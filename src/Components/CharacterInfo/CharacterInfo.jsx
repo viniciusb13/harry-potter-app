@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Modal from 'react-modal'
+import {faXmark} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import Hufflepuff from '../../assets/houseCrestsHufflepuff.png'
 import Gryffindor from '../../assets/houseCrestsGryffindor.png'
@@ -42,41 +44,67 @@ const CharacterInfo = (props) => {
 			overlayClassName="modal-overlay"
 			className="modal-content"
 		>
-			<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-				<div className="status" style={props.alive ? {background: 'green'} : {background: 'red'}}>
-					{props.alive ? <p>Alive</p> : <p>Deceased</p>}
+			<div className="background-blur">
+				<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+					<div className="status" style={props.alive ? {background: '#009944'} : {background: '#cf000f'}}>
+						{props.alive ? <p>Alive</p> : <p>Deceased</p>}
+					</div>
+					<div onClick={closeModal} className="close-modal">
+						<FontAwesomeIcon icon={faXmark} style={{ fontSize: '26px' }} />
+					</div>
 				</div>
 				<div>
-					<h2>{props.name}</h2>
+					<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+						<h2>{props.name}</h2>
+					</div>
 				</div>
-				<div onClick={closeModal} className="close-modal">X</div>
-			</div>
-			<div className="modal-body">
-				<div>
-					{ props.image ? <img src={props.image} alt="Character Photo" height="250px"/> : null }
-				</div>
-				<div>
-					<ul>
-						<li>Date of Birth: {props.dateOfBirth}</li>
-						<li>Species: {props.species}</li>
-						<li>Gender: {props.gender}</li>
-						<li>House: {props.house}</li>
-						<li>Ancestry: {props.ancestry}</li>
-						<li>
-							Wand:
-							<ul>
-								<li>Wood: {props.wand.wood}</li>
-								<li>Core: {props.wand.core}</li>
-								<li>Length: {props.wand.length}</li>
-							</ul>
-						</li>
-						<li>Patronus: {props.patronus}</li>
-						<li>Alternate Names: {props.altNames}</li>
-					</ul>
-				</div>
-				<div className="role">
-					{props.staff ? <p>Staff</p> : ''}
-					{props.student ? <p>Student</p> : ''}
+				<div className="modal-body">
+					{props.image ? (
+					<div>
+						<img src={props.image} alt="Character Photo" height="250px"/>
+					</div>) : null
+					}
+					<div>
+						<ul>
+							<li>Date of Birth: {props.dateOfBirth ? props.dateOfBirth : 'Not Found'}</li>
+							<li>Species: {props.species ? props.species : 'Not Found'}</li>
+							<li>Gender: {props.gender ? props.gender : 'Not Found'}</li>
+							<li>House: {props.house ? props.house : 'Not Found'}</li>
+							<li>Ancestry: {props.ancestry ? props.ancestry : 'Not Found'}</li>
+							<li>
+								Wand:
+								<ul>
+									<li>Wood: {props.wand.wood ? props.wand.wood : 'Not Found'}</li>
+									<li>Core: {props.wand.core ? props.wand.core : 'Not Found'}</li>
+									<li>Length: {props.wand.length ? props.wand.length : 'Not Found'}</li>
+								</ul>
+							</li>
+							<li>Patronus: {props.patronus ? props.patronus : 'Not Found'}</li>
+							<li>
+								Alternate Names:
+								{props.altNames.length === 0 ? ' Not Found' : (
+									<ul>
+										{props.altNames.map((altName) => {
+											return <li>{altName}</li>
+										})}
+									</ul>
+								)}
+							</li>
+
+						</ul>
+					</div>
+					<div className="role">
+						{props.staff ? (
+							<Link to={'/characters/staff'}>
+								<p>Staff</p>
+							</Link>
+							) : ''}
+						{props.student ? (
+							<Link to={'/characters/students'}>
+								<p>Student</p>
+							</Link>
+							) : ''}
+					</div>
 				</div>
 			</div>
 		</Modal>
@@ -86,15 +114,11 @@ const CharacterInfo = (props) => {
 				<img src={houseImage} className="house-crest" />
 			</Link>
 			<div className="character-info">
-				{/* <div>
-					{ props.image ? <img src={props.image} alt="Character Photo" height="250px"/> : null }
-					<p>Date of Birth: {props.dateOfBirth}</p>
-				</div> */}
 				<div>
-					<p>Species: {props.species}</p>
-					<p>Gender: {props.gender}</p>
-					<p>Ancestry: {props.ancestry}</p>
-					<p>Patronus: {props.patronus}</p>
+					<p>Species: {props.species ? props.species : 'Not Found'}</p>
+					<p>Gender: {props.gender ? props.gender : 'Not Found'}</p>
+					<p>Ancestry: {props.ancestry ? props.ancestry : 'Not Found'}</p>
+					<p>Patronus: {props.patronus ? props.patronus : 'Not Found'}</p>
 				</div>
 			</div>
 		</div>
