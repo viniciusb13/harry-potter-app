@@ -43,6 +43,9 @@
 }
 
 .modal-content {
+    font-family: "Helvetica Neue" ,Arial,sans-serif;
+    font-size: 18px;
+    outline: none;
     position: fixed;
     background: white;
     border-radius: 10px;
@@ -58,6 +61,21 @@
     bottom: auto;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    background: url("../../assets/background6.jpg");
+    background-size: cover;
+}
+
+.background-blur {
+    padding: 15px 30px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba( 255, 255, 255, 0.35 );
+    backdrop-filter: blur( 9.5px );
+    -webkit-backdrop-filter: blur( 9.5px );
+    z-index: 1;
 }
 
 .modal-body {
@@ -78,8 +96,12 @@
     font-family: 'Montserrat', sans-serif;
     justify-content: center;
     align-items: center;
-    padding: 0px 25px;
+    padding: 0px 20px;
     border-radius: 8px;
+}
+
+.status p {
+    margin: 5px;
 }
 
 .role {
@@ -87,5 +109,16 @@
     bottom: 0;
     right: 0;
     padding: 5px;
-    /* height: 80px; */
+    font-family: "Harry Potter";
+    /* font-size: 40px; */
+}
+
+.role a {
+    text-decoration: none;
+    color: black;
+    font-size: 40px;
+}
+
+.role p {
+    margin-bottom: 0;
 }
