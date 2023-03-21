@@ -43,12 +43,15 @@ const HouseCharacters = () => {
                         gender={character.gender}
                         house={character.house}
                         dateOfBirth={character.dateOfBirth}
-                        yearOfBirth={character.yearOfBirth}
                         ancestry={character.ancestry}
                         eyeColour={character.eyeColour}
                         hairColour={character.hairColour}
                         wand={character.wand}
                         patronus={character.patronus}
+                        alive={character.alive}
+                        altNames={character.alternate_names}
+                        staff={character.hogwartsStaff}
+                        student={character.hogwartsStudent}
                     />
                 )
             })

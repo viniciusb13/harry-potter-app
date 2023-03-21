@@ -93,18 +93,18 @@ const CharacterInfo = (props) => {
 
 						</ul>
 					</div>
-					<div className="role">
-						{props.staff ? (
-							<Link to={'/characters/staff'}>
-								<p>Staff</p>
-							</Link>
-							) : ''}
-						{props.student ? (
-							<Link to={'/characters/students'}>
-								<p>Student</p>
-							</Link>
-							) : ''}
-					</div>
+				</div>
+				<div className="role">
+					{props.staff ? (
+						<Link to={'/characters/staff'}>
+							<p>Staff</p>
+						</Link>
+						) : ''}
+					{props.student ? (
+						<Link to={'/characters/students'}>
+							<p>Student</p>
+						</Link>
+						) : ''}
 				</div>
 			</div>
 		</Modal>
