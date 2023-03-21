@@ -2,8 +2,6 @@ import React from 'react'
 
 import './style.css'
 const SearchBar = ({ totalResults, setSearchResults }) => {
-    const handleSubmit = (e) => e.preventDefault;
-
     const handleSearchChange = (e) => {
         if(!e.target.value) {
             setSearchResults(totalResults)

@@ -80,7 +80,17 @@ const CharacterInfo = (props) => {
 								</ul>
 							</li>
 							<li>Patronus: {props.patronus ? props.patronus : 'Not Found'}</li>
-							<li>Alternate Names: {props.altNames ? props.altNames : 'Not Found'}</li>
+							<li>
+								Alternate Names:
+								{props.altNames.length === 0 ? ' Not Found' : (
+									<ul>
+										{props.altNames.map((altName) => {
+											return <li>{altName}</li>
+										})}
+									</ul>
+								)}
+							</li>
+
 						</ul>
 					</div>
 					<div className="role">
@@ -104,15 +114,11 @@ const CharacterInfo = (props) => {
 				<img src={houseImage} className="house-crest" />
 			</Link>
 			<div className="character-info">
-				{/* <div>
-					{ props.image ? <img src={props.image} alt="Character Photo" height="250px"/> : null }
-					<p>Date of Birth: {props.dateOfBirth}</p>
-				</div> */}
 				<div>
-					<p>Species: {props.species}</p>
-					<p>Gender: {props.gender}</p>
-					<p>Ancestry: {props.ancestry}</p>
-					<p>Patronus: {props.patronus}</p>
+					<p>Species: {props.species ? props.species : 'Not Found'}</p>
+					<p>Gender: {props.gender ? props.gender : 'Not Found'}</p>
+					<p>Ancestry: {props.ancestry ? props.ancestry : 'Not Found'}</p>
+					<p>Patronus: {props.patronus ? props.patronus : 'Not Found'}</p>
 				</div>
 			</div>
 		</div>
