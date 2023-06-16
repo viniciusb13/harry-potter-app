@@ -7,6 +7,7 @@
     margin: 10px;
     padding: 5px 15px;
     position: relative;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 .character-info {
@@ -49,7 +50,7 @@
     position: fixed;
     background: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px 20px 70px 20px;
     width: 500px;
     height: 500px;
     overflow: auto;
@@ -63,6 +64,11 @@
     transform: translate(-50%, -50%);
     background: url("../../assets/background6.jpg");
     background-size: cover;
+}
+
+.modal-content li {
+    /* list-style: none; */
+    margin: 7px;
 }
 
 .background-blur {
@@ -117,8 +123,12 @@
     text-decoration: none;
     color: black;
     font-size: 40px;
+    margin: 0px;
 }
 
 .role p {
-    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
 }

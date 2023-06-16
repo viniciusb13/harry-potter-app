@@ -16,6 +16,17 @@
     color: black;
 }
 
+.menu-icon {
+    cursor: pointer;
+    font-size: 36px;
+    display: flex;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+        display: none;
+    }
+}
+
 .nav-button:hover {
     cursor: pointer;
 }
@@ -23,4 +34,58 @@
 a {
     font-size: 2.5em;
     margin: 25px 0px 10px;
+}
+
+.menu {
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    @media(min-width: 1024px) {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.menu ul {
+    list-style-type: none;
+    display: flex;
+}
+    
+@media only screen and (max-width: 1024px) {
+  .menu {
+    display: none;
+  }
+
+  .menu ul {
+    margin-top: 0;
+    width: 15rem;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #e3a000;
+    z-index: 200;
+    flex-direction: column;
+    line-height: 30px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu ul li {
+    text-align: center;
+    padding: 2.5rem 0;
+  }
+
+  .show__menu {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    background: #00000089;
+    z-index: 100;
+  }
 }

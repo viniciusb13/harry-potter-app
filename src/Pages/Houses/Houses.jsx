@@ -11,7 +11,7 @@ import './style.css'
 
 const Houses = () => {
 	return (
-		<div style={{ display: 'flex', justifyContent: 'center' }}>
+		<div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
 			<Link className="house-crest-button" to={`/houses/gryffindor`}>
 				<img className="house-crest" src={houseCrestsGryffindorCrest}></img>
 				Gryffindor

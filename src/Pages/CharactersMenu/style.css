@@ -1,5 +1,6 @@
 .characters-menu {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     height: 85vh;
@@ -16,6 +17,13 @@
     cursor: pointer;
     font-size: 8.5em;
     padding: 100px;
+
+    @media(max-width: 920px) {
+        /* font-size: 5em; */
+        font-size: 15vw;
+        padding: 50px;
+
+    }
 }
 
 .button:hover {
